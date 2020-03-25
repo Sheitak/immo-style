@@ -1,9 +1,9 @@
 export interface Property {
   title: string;
   category: string;
-  surface: number;
-  rooms: number;
+  surface: any;
+  rooms: any;
   description?: string;
-  price: number;
+  price: any;
   sold: boolean;
 }
