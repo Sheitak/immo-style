@@ -4,16 +4,34 @@
       <h2 class="font-weight-light">
         <i class="fas fa-home"></i> Biens immobiliers
       </h2>
-      <button class="btn-primary ml-auto" type="button" data-toggle="modal" data-target="#propertiesFormModal">
+      <button class="btn-primary ml-auto" type="button" data-toggle="modal" data-target="#propertiesFormModal" (click)="resetForm()">
         <i class="fas fa-plus"></i> Ajouter un bien
       </button>
     </div>
   </div>
   <hr class="mt-1 mb-5 bg-dark">
-  <div class="row"></div>
+  <div class="row">
+    <div *ngFor="let property of properties; let i = index" class="col-12 shadow-sm p-4 mb-3 bg-light">
+      <div class="d-flex">
+        <h3 class="font-weight-normal">{{ property.title }}</h3>
+        <div class="ml-auto">
+          <button class="btn btn-primary m-1" type="button"><i class="fas fa-edit" (click)="onEditProperty(property)"></i></button>
+          <button class="btn btn-danger m-1" type="button" (click)="onDeleteProperty(i)"><i class="fas fa-trash-alt"></i></button>
+        </div>
+      </div>
+      <p>
+        {{ property.category }}
+        <span *ngIf="property.surface && property.surface !== ''">de {{ property.surface }} m²</span>
+        <span *ngIf="property.rooms && property.rooms !== ''">, {{ property.rooms }} pièce(s).</span>
+      </p>
+      <p *ngIf="property.price && property.price !== ''">
+        {{ property.price }} €
+      </p>
+    </div>
+  </div>
 </div>
 
-<!-- Modal -->
+<!-- Modal Edition-->
 <div class="modal fade" id="propertiesFormModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
@@ -33,9 +51,9 @@
               <label class="input-group-text" for="inputGroupSelect01">Catégorie</label>
             </div>
             <select class="custom-select" id="inputGroupSelect01" formControlName="category">
-              <option value="appartement">Appartement</option>
-              <option value="maison">Maison</option>
-              <option value="villa">Villa</option>
+              <option value="Appartement">Appartement</option>
+              <option value="Maison">Maison</option>
+              <option value="Villa">Villa</option>
             </select>
           </div>
           <div class="form-row">
@@ -58,6 +76,24 @@
           <button type="button" class="btn btn-primary" type="submit" [disabled]="propertiesForm.invalid">Enregistrer</button>
         </div>
       </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Confirm Suppression-->
+<div class="modal fade" id="deletePropertyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Supprimer ce bien ?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+        <button type="button" class="btn btn-danger" (click)="onConfirmDeleteProperty()">Supprimer</button>
+      </div>
     </div>
   </div>
 </div>
