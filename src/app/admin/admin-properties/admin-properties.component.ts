@@ -18,7 +18,6 @@ export class AdminPropertiesComponent implements OnInit {
 
   indexToRemove;
   indexToUpdate;
-
   editMode = false;
 
   photoUploading = false;
@@ -63,7 +62,7 @@ export class AdminPropertiesComponent implements OnInit {
     if (this.editMode) {
       this.propertiesService.updateProperty(newProperty, this.indexToUpdate);
     } else {
-      this.propertiesService.createProperties(newProperty);
+      this.propertiesService.createProperty(newProperty);
     }
     $('#propertiesFormModal').modal('hide');
   }

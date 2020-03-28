@@ -6,6 +6,7 @@ import * as firebase from 'firebase';
 @Injectable({
   providedIn: 'root'
 })
+
 export class PropertiesService {
 
   properties: Property[] = [];
@@ -36,7 +37,7 @@ export class PropertiesService {
   }
 
   saveProperties() {
-    firebase.database().ref('/peoperties').set(this.properties);
+    firebase.database().ref('/properties').set(this.properties);
   }
 
   getProperties() {
@@ -46,7 +47,23 @@ export class PropertiesService {
     });
   }
 
-  createProperties(property: Property) {
+  getSingleProperties(id) {
+    return new Promise(
+      (resolve,reject) => {
+        firebase.database().ref('/properties/' + id).once('value').then(
+          (data) => {
+            resolve(data.val());
+          }
+        ).catch(
+          (error) => {
+            reject(error);
+          }
+        );
+      }
+    );
+  }
+
+  createProperty(property: Property) {
     this.properties.push(property);
     this.saveProperties();
     this.emitProperties();
@@ -59,10 +76,11 @@ export class PropertiesService {
   }
 
   updateProperty(property: Property, index) {
-    // this.properties[index] = property;
-    // this.saveProperties();
-    // this.emitProperties();
-    firebase.database().ref('/properties/' + index).update(property);
+    firebase.database().ref('/properties/' + index).update(property).catch(
+      (error) => {
+        console.error(error);
+      }
+    );
   }
 
   uploadFile(file: File) {
@@ -81,8 +99,8 @@ export class PropertiesService {
           },
           () => {
             upload.snapshot.ref.getDownloadURL().then(
-              (downLoadUrl) => {
-                resolve(downLoadUrl);
+              (downloadUrl) => {
+                resolve(downloadUrl);
               }
             );
           }
@@ -100,7 +118,7 @@ export class PropertiesService {
         }
       ).catch(
         (error) => {
-          console.log(error);
+          console.error(error);
         }
       );
     }
