@@ -37,7 +37,7 @@
         {{ property.description }}
       </p>
       <h3 class="font-weight-normal text-danger" *ngIf="property.sold">Vendu !</h3>
-      <h3 class="font-weight-normal text-success" *ngIf="!property.sold">Vendu !</h3>
+      <h3 class="font-weight-normal text-success" *ngIf="!property.sold">A Vendre</h3>
       <button type="button" class="btn btn-info" [routerLink]="['/home']">Retour</button>
     </div>
   </div>
