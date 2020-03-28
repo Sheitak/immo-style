@@ -11,23 +11,6 @@ export class PropertiesService {
 
   properties: Property[] = [];
 
-  //   {
-  //     title: 'Rose des sables',
-  //     category: 'Villa',
-  //     sold: true
-  //   },
-  //   {
-  //     title: 'Plume de nature',
-  //     category: 'Maison',
-  //     sold: false
-  //   },
-  //   {
-  //     title: 'Coeur de village',
-  //     category: 'Appartement',
-  //     sold: true
-  //   }
-  // ];
-
   propertiesSubject = new Subject<Property[]>();
 
   constructor() { }
