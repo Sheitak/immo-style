@@ -1,7 +1,11 @@
+/*
+ *   Copyright (c) 2020
+ *   All rights reserved.
+ */
 import { Injectable } from '@angular/core';
 import { Router, CanActivate } from '@angular/router';
 import { Observable } from 'rxjs';
-import * as firebase from 'firebase';
+import firebase from 'firebase/app'
 
 @Injectable({
   providedIn: 'root'

@@ -1,3 +1,7 @@
+/*
+ *   Copyright (c) 2020
+ *   All rights reserved.
+ */
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';

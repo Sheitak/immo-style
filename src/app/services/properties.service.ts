@@ -1,7 +1,11 @@
+/*
+ *   Copyright (c) 2020
+ *   All rights reserved.
+ */
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Property } from '../interfaces/property';
-import * as firebase from 'firebase';
+import firebase from 'firebase/app'
 
 @Injectable({
   providedIn: 'root'

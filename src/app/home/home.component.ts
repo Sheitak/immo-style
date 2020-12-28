@@ -1,3 +1,7 @@
+/*
+ *   Copyright (c) 2020
+ *   All rights reserved.
+ */
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { PropertiesService } from '../services/properties.service';
 import { Subscription } from 'rxjs';

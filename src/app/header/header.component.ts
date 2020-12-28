@@ -1,6 +1,10 @@
+/*
+ *   Copyright (c) 2020
+ *   All rights reserved.
+ */
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
-import * as firebase from 'firebase';
+import firebase from 'firebase/app'
 
 @Component({
   selector: 'app-header',
